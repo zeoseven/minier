@@ -1,6 +1,6 @@
 简体中文 | [English](./README.md)
 
-# minier - 全自动静态文件压缩器
+# minier - 自动的静态文件压缩器
 
 minier 是一个零配置可用的自动化源代码最小化压缩器。其行为类似于 JavaScript ESM 打包器，但会在输出目录保持开发目录的文件结构和路径。
 
