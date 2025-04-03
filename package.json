@@ -1,0 +1,41 @@
+{
+    "name": "minier",
+    "version": "1.0.0",
+    "author": "ZeoSeven",
+    "license": "MIT",
+    "description": "Automatic Static File Compressor.",
+    "keywords": [
+        "minier",
+        "build",
+        "compress",
+        "compressor",
+        "web",
+        "static"
+    ],
+    "homepage": "https://minier.zeoseven.com",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/zeoseven/minier"
+    },
+    "type": "module",
+    "main": "./dist/index.mjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "bin": {
+        "minier": "./dist/bin/index.js"
+    },
+    "exports": {
+        ".": "./dist/index.mjs"
+    },
+    "dependencies": {
+        "chalk": "^5.4.1",
+        "clean-css": "^5.3.2",
+        "commander": "^13.1.0",
+        "fs-extra": "^11.3.0",
+        "glob": "^11.0.1",
+        "html-minifier-terser": "^7.2.0",
+        "minify-xml": "^4.5.2",
+        "sharp": "^0.33.5",
+        "terser": "^5.39.0"
+    }
+}
