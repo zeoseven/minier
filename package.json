@@ -12,7 +12,7 @@
         "web",
         "static"
     ],
-    "homepage": "https://minier.zeoseven.com",
+    "homepage": "https://github.com/zeoseven/minier",
     "repository": {
         "type": "git",
         "url": "https://github.com/zeoseven/minier"
