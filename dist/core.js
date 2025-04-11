@@ -84,12 +84,12 @@ async function core(config) {
     cwd: baseDir,
     nodir: true,
     ignore: config.ignore
-  })
+  });
 
   const OnFiles = files.filter(i => /\.(html|htm|css|mjs|js|json|xml|svg)$/i.test(i));
 
   if (OnFiles <= 0) {
-    console.log(chalk.bgRed.white(`  There are no files in ${baseDir} or no directory for this.  `));
+    console.log(chalk.red(`    There are no files in ${baseDir} or no directory for this.`));
     console.log(` `);
     process.exit(0);
   } else {
@@ -240,9 +240,7 @@ async function core(config) {
 
 
 
-  console.log(
-    chalk.black(`✨ ${vars.outputNumber} Files Minified. (${((Date.now() - vars.startTime) / 1000).toFixed(3)}s)`)
-  );
+  console.log(`✨ ${vars.outputNumber} Files Minified. (${((Date.now() - vars.startTime) / 1000).toFixed(3)}s)`);
   console.log(` `);
 };
 

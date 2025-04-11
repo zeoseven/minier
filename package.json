@@ -1,6 +1,6 @@
 {
     "name": "minier",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "author": "ZeoSeven",
     "license": "MIT",
     "description": "Automatic Static File Compressor.",
