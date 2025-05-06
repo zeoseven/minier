@@ -161,7 +161,7 @@ minier({
 
 ## js.noSpaces
 
-删除 &lt;script&gt; 标签、 .js 和 .mjs 文件中两个连续的空格，适用于具有缩进和换行的模板字符串。
+删除 &lt;script&gt; 标签、 .js, .cjs 和 .mjs 文件中两个连续的空格，适用于具有缩进和换行的模板字符串。
 
 `Boolean` `config.js.noSpaces || false`
 
@@ -228,7 +228,7 @@ minier({
 
 [terser](https://github.com/terser/terser) 的 compress 配置项方法。
 
-这会影响 &lt;script&gt; 标签、 .js 和 .mjs 文件。
+这会影响 &lt;script&gt; 标签、 .js, .cjs 和 .mjs 文件。
 
 ```js
 {

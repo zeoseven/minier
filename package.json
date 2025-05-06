@@ -1,6 +1,6 @@
 {
     "name": "minier",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "author": "ZeoSeven",
     "license": "MIT",
     "description": "自动的静态文件压缩器",
