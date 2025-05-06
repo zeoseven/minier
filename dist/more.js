@@ -1,11 +1,18 @@
 export const initConfig = (config) => {
+
+  function value(i, d) {
+    return typeof i == "undefined" ? d : i;
+  };
+
   return {
 
     baseDir: config.baseDir || 'src/',
 
-    outDir: config.outDir || 'miniout/',
+    outDir: config.outDir || 'release/',
 
     ignore: config.ignore || [],
+
+    cleanOutDir: value(config.cleanOutDir, false),
 
     html: {
       ...config.html

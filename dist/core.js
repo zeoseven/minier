@@ -53,12 +53,8 @@ async function core(config) {
   );
   console.log(` `);
 
-  function value(a, b) {
-    return typeof a === 'undefined' || a == null ? b : a;
-  };
-
   function funValue(a, b) {
-    return a || typeof a === 'undefined' || a == null ? b : a;
+    return a || typeof a == 'undefined' || a == null ? b : a;
   };
 
 
@@ -86,7 +82,7 @@ async function core(config) {
     ignore: config.ignore
   });
 
-  const OnFiles = files.filter(i => /\.(html|htm|css|mjs|js|json|xml|svg)$/i.test(i));
+  const OnFiles = files.filter(i => /\.(html|htm|css|mjs|cjs|js|json|xml|svg)$/i.test(i));
 
   if (OnFiles <= 0) {
     console.log(chalk.red(`    There are no files in ${baseDir} or no directory for this.`));
@@ -100,9 +96,8 @@ async function core(config) {
 
 
 
-  // Remove
   if (
-    value(config.cleanOutDir, true)
+    config.cleanOutDir
   ) {
     try {
       fse.removeSync(outDir);
@@ -179,7 +174,7 @@ async function core(config) {
 
 
     // JS
-    if (file.endsWith('.js') || file.endsWith('.mjs')) {
+    if (file.endsWith('.js') || file.endsWith('.mjs') || file.endsWith('.cjs')) {
       const jsCode = fs.readFileSync(baseDir + file, 'utf8');
 
       let result = null;

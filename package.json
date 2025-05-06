@@ -1,9 +1,9 @@
 {
     "name": "minier",
-    "version": "1.0.2",
+    "version": "1.2.0",
     "author": "ZeoSeven",
     "license": "MIT",
-    "description": "Automatic Static File Compressor.",
+    "description": "自动的静态文件压缩器",
     "keywords": [
         "minier",
         "build",

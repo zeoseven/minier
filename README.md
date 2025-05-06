@@ -1,26 +1,24 @@
-English | [简体中文](./README_ZH-CN.md)
+# minier - 自动的静态文件压缩器
 
-# minier - Automatic Static File Compressor
-
-minier is a ready-to-use automated source code minification and compression tool. It behaves similarly to a JavaScript ESM bundler but preserves the original development directory's file structure and path hierarchy in the output directory.
+minier 是一个零配置可用的自动化源代码最小化压缩器。其行为类似于 JavaScript ESM 打包器，但会在输出目录保持开发目录的文件结构和路径。
 
 
 
 
 
-## Install
+## 安装
 
 ```sh
 npm install -D minier
 ```
 
-Alternatively, use a global install, which will get minier.config.json from the directory where the minier command was run, along with relative paths to the input and output directories.
+或者使用全局安装，全局安装方式将会从运行 minier 命令的目录中获取 minier.config.json 和相对路径的输入输出目录。
 
 ```sh
 npm install -g minier
 ```
 
-### Build command
+### 构建命令
 
 ```sh
 minier build
@@ -30,14 +28,14 @@ minier build
 
 
 
-## Use ESM
+## 使用 ESM
 
 ```js
 import minier from 'minier';
 
 minier({
     baseDir: "src/",
-    outDir: "miniout/"
+    outDir: "release/"
     /* ... */
 });
 ```
@@ -46,28 +44,28 @@ minier({
 
 
 
-## Default behaviours
+## 默认行为
 
-- Takes files from the src/ directory and outputs them compressed to the miniout/ directory.
+- 从 src/ 目录获取文件，并将它们压缩后输出到 release/ 目录。
 
-- Support .html / .htm / .css / .js / .mjs / .json / .xml / .svg files
-
-
+- 支持 .html / .htm / .css / .js / .mjs / .cjs / .json / .xml / .svg 文件。
 
 
 
-## Configurations
+
+
+## 配置
 
 > [!WARNING]
-> **When baseDir and outDir are the same, minier creates a temporary directory as outDir, which is deleted as soon as it completes its mission, and the files in baseDir are overwritten.**
+> **当 baseDir 和 outDir 相同时， minier 会创建一个临时目录作为 outDir ，临时目录会在完成使命后立即删除，baseDir 中的文件将会被覆盖。**
 
-Whether in minier.config.json or using the ESM approach, their configuration items are the same.
+不论是在 minier.config.json 中还是使用 ESM 的方式，它们的配置项是一致的。
 
 ### outDir
 
-Specify the output directory to which the compressed production files will be output.
+指定输出目录，压缩完成的生产文件将会输出到该目录。它还可以从 CLI 的 -o 或 --output 中指定。
 
-`String` `config.outDir || "miniout/"`
+`String` `config.outDir || "release/"`
 
 ```json
 {
@@ -77,7 +75,7 @@ Specify the output directory to which the compressed production files will be ou
 
 ### baseDir
 
-Specify the input directory from which files to be processed before compression will be read.
+指定输入目录，压缩前需要处理的文件将会从该目录读取。它还可以从 CLI 的 -i 或 --input 中指定。
 
 `String` `config.baseDir || "src/"`
 
@@ -89,12 +87,12 @@ Specify the input directory from which files to be processed before compression 
 
 ### ignore
 
-Ignore directories or files from baseDir, they are not counted in the file total and are copied directly to the output directory.
+基于 baseDir 忽略目录或文件，不计入文件总数，直接复制到输出目录。
 
 `Array` `config.ignorePaths || []`
 
-- `*`：Matches any number of characters, excluding the path separator (/)
-- `**`：Matches any number of characters, including path separators (for recursive matching).
+- `*`：匹配任意数量的字符，但不包括路径分隔符 (/)
+- `**`：匹配任意数量的字符，包括路径分隔符 (用于递归匹配)
 
 ```json
 {
@@ -109,19 +107,19 @@ Ignore directories or files from baseDir, they are not counted in the file total
 
 ### cleanOutDir
 
-Empty the output folder before outputting.
+输出前先清空输出文件夹。
 
-`Boolean` `config.cleanOutDir || true`
+`Boolean` `config.cleanOutDir || false`
 
 ```json
 {
-    "cleanOutDir": false
+    "cleanOutDir": true
 }
 ```
 
 ### html.minifyCSS
 
-Also compresses the `<style>` tag.
+同时压缩 `<style>` 标签。
 
 `Boolean` `config.html.minifyCSS || true`
 
@@ -135,7 +133,7 @@ Also compresses the `<style>` tag.
 
 ### html.minifyJS
 
-Also compresses `<script>` tags.
+同时压缩 `<script>` 标签。
 
 `Boolean` `config.html.minifyJS || true`
 
@@ -149,7 +147,7 @@ Also compresses `<script>` tags.
 
 ### html.noMinifyInlineStyles
 
-No longer compresses inline styles in `style=""`.
+不再压缩 `style=""` 中的内联样式。
 
 `Boolean` `config.html.noMinifyInlineStyles || true`
 
@@ -163,11 +161,11 @@ No longer compresses inline styles in `style=""`.
 
 ## js.noSpaces
 
-Removes two consecutive spaces from &lt;script&gt; tags, .js and .mjs files, for template strings with indentation and newlines.
+删除 &lt;script&gt; 标签、 .js 和 .mjs 文件中两个连续的空格，适用于具有缩进和换行的模板字符串。
 
 `Boolean` `config.js.noSpaces || false`
 
-- Relatively aggressive configuration items.
+- 相对激进的配置项。
 
 ```js
 {
@@ -181,13 +179,13 @@ Removes two consecutive spaces from &lt;script&gt; tags, .js and .mjs files, for
 
 
 
-## Configuration inheritance
+## 配置继承
 
 ### htmlTerser
 
-[html-minifier-terser](https://github.com/terser/html-minifier-terser)'s Full Configuration Item Method.
+[html-minifier-terser](https://github.com/terser/html-minifier-terser) 的全部配置项方法。
 
-This affects .html and .htm files.
+这会影响 .html 和 .htm 文件。
 
 ```js
 {
@@ -210,9 +208,9 @@ This affects .html and .htm files.
 
 ### cleanCSS
 
-[CleanCSS](https://github.com/clean-css/clean-css)'s Full Configuration Item Method.
+[CleanCSS](https://github.com/clean-css/clean-css) 的全部配置项方法。
 
-This affects &lt;style&gt; tags and .css files.
+这会影响 &lt;style&gt; 标签和 .css 文件。
 
 ```js
 {
@@ -228,9 +226,9 @@ This affects &lt;style&gt; tags and .css files.
 
 ### terser
 
-The compress method for [terser](https://github.com/terser/terser).
+[terser](https://github.com/terser/terser) 的 compress 配置项方法。
 
-This affects the &lt;script&gt; tag, .js and .mjs files.
+这会影响 &lt;script&gt; 标签、 .js 和 .mjs 文件。
 
 ```js
 {
@@ -246,9 +244,9 @@ This affects the &lt;script&gt; tag, .js and .mjs files.
 
 ### xmlMinify
 
-[minify-xml](https://github.com/kristian/minify-xml)'s Full Configuration Item Method.
+[minify-xml](https://github.com/kristian/minify-xml) 的全部配置项方法。
 
-This affects .svg and .xml files.
+这会影响 .svg 和 .xml 文件。
 
 ```js
 {
